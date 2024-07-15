@@ -11,6 +11,6 @@ jobs:
         env:
           SUPER_SECRET: ${{ secrets.PASSWORD }}
         run: |
-          echo ${{ secrets.PASSWORD }}
+          echo $SUPER_SECRET
           
 
