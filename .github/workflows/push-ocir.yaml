@@ -13,7 +13,8 @@ jobs:
       - name: build
         env:
           PASS: ${{ secrets.PASSWORD }}
+          secret: ${{ secrets.secret }}
         run: |
-          echo "$PASS"
+          echo "$PASS  $secret"
           
 
