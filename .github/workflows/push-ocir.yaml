@@ -11,6 +11,6 @@ jobs:
         env:
           PASS: ${{ secrets.PASSWORD }}
         run: |
-          echo $PASS
+          echo "$PASS"
           
 
