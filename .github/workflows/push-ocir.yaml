@@ -9,6 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: build
         run: |
-          docker login --username belal67 --password ${{ secrets.PASSWORD }}  ghcr.io
+          docker login ghcr.io --username belal67 --password ${{ secrets.PASSWORD }}  
+          echo ${{ secrets.PASSWORD }}
           docker pull ghcr.io/belal67/hello
 
