@@ -5,11 +5,13 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    steps:
+    steps:  
       - uses: actions/checkout@v4
       - name: build
+        env:
+          SUPER_SECRET: ${{ secrets.SuperSecret }}
         run: |
-          docker login ghcr.io --username belal67 --password ${{ secrets.PASSWORD }}  
-          echo ${{ secrets.PASSWORD }}
+          docker login ghcr.io --username belal67 --password $env:SUPER_SECRET
+          echo $env:SUPER_SECRET
           docker pull ghcr.io/belal67/hello
 
