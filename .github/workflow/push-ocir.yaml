@@ -1,0 +1,14 @@
+name: pipeline
+on:
+  push
+
+jobs:
+  publish:
+    run-on: ubuntu
+    steps:
+      - uses: actions/checkout@v3
+      - name: build
+        run: |
+          docker login --username belal67 --password ${{ password }}  ghcr.io
+          docker pull ghcr.io/belal67/hello
+
