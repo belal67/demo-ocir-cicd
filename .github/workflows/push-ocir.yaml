@@ -11,7 +11,7 @@ jobs:
         env:
           SUPER_SECRET: ${{ secrets.SuperSecret }}
         run: |
+          echo $SUPER_SECRET
           echo $SUPER_SECRET | docker login ghcr.io --username belal67  --password-stdin 
-          echo $env:SUPER_SECRET
           docker pull ghcr.io/belal67/hello
 
