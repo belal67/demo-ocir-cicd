@@ -4,6 +4,13 @@ on:
 
 jobs:
   publish:
+    env:
+      OCI_CLI_USER: "ocid1.user.oc1..aaaaaaaaz57hlozyo3psbn6vhmaly4vih3tkyuk3nfhn5u7w2fr6k7bohxcq"
+      OCI_CLI_TENANCY: "ocid1.tenancy.oc1..aaaaaaaazi2u3lrlwl6owwypjdmk7sergcbrfori7gxp57wynist43udqgoa"
+      OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+      OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+      OCI_CLI_REGION: "eu-frankfurt-1"
+
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -14,7 +21,15 @@ jobs:
         env:
           PASS: ${{ secrets.PASSWORD }}
         run: |
-
           docker login --username belal67 --password  ${{ secrets.PASSWORD }} ghcr.io
+          docker pull ghcr.io/belal67/hello:latest
+      - name: Log into OCIR
+        uses: oracle-actions/login-ocir@v1.3.0
+        id: login-ocir
+        with:
+          auth_token: ${{ secrets.OCI_AUTH_TOKEN }}
+      - name: push
+        run: |
+          docker tag ghcr.io/belal67/hello fra.ocir.io/frxpd492cljs/store:testttt
           
 
