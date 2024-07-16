@@ -28,8 +28,11 @@ jobs:
         id: login-ocir
         with:
           auth_token: ${{ secrets.OCI_AUTH_TOKEN }}
+      - name: tag
+        run: |
+          docker tag ghcr.io/belal67/hello:latest fra.ocir.io/frxpd492cljs/store:testttt
       - name: push
         run: |
-          docker tag ghcr.io/belal67/hello fra.ocir.io/frxpd492cljs/store:testttt
+          docker push fra.ocir.io/frxpd492cljs/store:testttt
           
 
